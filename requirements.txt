@@ -1,0 +1,22 @@
+# ARR Omni-Tool Dependencies
+# Phase 1: Core Foundation
+
+# GUI Framework
+PyQt6>=6.4.0
+
+# HTTP/API
+requests>=2.28.0
+urllib3>=1.26.0
+
+# Utilities
+python-dateutil>=2.8.0
+
+# --- NEW: Secure Storage & Network File Systems ---
+keyring>=23.0.0
+pysmb>=1.2.0
+paramiko>=2.10.0
+
+# Development (optional)
+pytest>=7.2.0
+pytest-qt>=4.2.0
+pytest-cov>=4.0.0

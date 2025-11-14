@@ -1,0 +1,100 @@
+﻿========================================================================
+# ARR OMNI-TOOL - ULTIMATE BLACKLIST FOR MEDIA FILE SCRUBBING
+# ================================================================================
+# This file contains regex patterns to clean up media filenames before searching.
+# One pattern per line. Lines starting with '#' are ignored (comments/disabled).
+#
+# USAGE:
+# - Each line is treated as a regex pattern (case-insensitive)
+# - Patterns are applied in order from top to bottom
+# - To disable a rule
+# - The app will ignore any line starting with a hash
+# - Use with caution - test patterns before enabling
+#
+# VERSION: 2.0 (Merged & Enhanced)
+# PATTERNS: 150+ active
+# ================================================================================
+# ================================================================================
+# LEADING NUMBERS & TRACK PREFIXES
+# ================================================================================
+"# Removes track numbers like ""01. """
+^\d+\s*[\.-]?\s*
+"# Remove disc/CD numbers from start: ""CD1 """
+^(CD|Disc|Disk)\s*\d+\s*[\.-]?\s*
+# Remove season/episode from start if needed (use carefully - might break TV shows)
+# ^S\d{2}E\d{2}\s*[\.-]?\s*
+# ================================================================================
+# RESOLUTIONS & DISPLAY FORMATS
+# ================================================================================
+# Bracketed resolutions: [1080p]
+\[\d{3
+# Parenthetical resolutions: (1080p)
+\(1080p\)
+\(720p\)
+\(480p\)
+# Standard resolution tags
+\b(2160p|1440p|1080p|1080i|720p|576p|480p|360p|240p)\b
+# Marketing names for resolutions
+\b(4K|8K|UHD|FHD|HD|SD)\b
+\[?(4K|8K|UHD)\]?
+# Broadcast standards
+\b(NTSC|PAL|SECAM)\b
+# ================================================================================
+# VIDEO CODECS
+# ================================================================================
+# Common naming variations for H.264/H.265
+x264
+x265
+h264
+h265
+\bH\.264\b
+\bH\.265\b
+HEVC
+# Modern and legacy video codecs
+\b(AVC|VC-1|VP9|AV1)\b
+\b(XviD|DivX|MPEG-?2|MPEG-?4)\b
+# Bit depth indicators
+\b(10bit|10-bit|8bit|8-bit)\b
+\b(Hi10P?)\b
+# ================================================================================
+# AUDIO CODECS & FORMATS
+# ================================================================================
+# DTS variants (multiple entries for maximum compatibility)
+DTS-HD
+DTS
+\b(DTS(-HD)?(-MA)?|DTS-?X)\b
+# Dolby variants
+TrueHD
+Atmos
+\b(Dolby\s?Atmos)\b
+# Common lossy formats
+AAC
+\b(AC3|EAC3|E-AC-?3)\b
+# Dolby Digital with channel configs
+\b(DD\+?|DD5\.1|DD7\.1)\b
+# Lossless audio formats (music/high-quality releases)
+\b(FLAC|ALAC|APE|WAV)\b
+# Lossy audio formats
+\b(MP3|OGG|Vorbis|Opus)\b
+# Professional/uncompressed audio
+\b(PCM|LPCM)\b
+# Channel configuration indicators
+\b(\d+\.\d+\s?CH|\d+CH)\b
+\b(Stereo|Mono|Surround)\b
+# Audio encoding details
+\b(2AUDIO?|5\.1|7\.1)\b
+# ================================================================================
+# SOURCE MEDIUM & QUALITY
+# ================================================================================
+# Blu-ray variants (multiple entries for compatibility)
+BluRay
+Blu-Ray
+\b(BDRip|BRRip|BD-?Remux)\b
+# Web sources
+WEB-DL
+WEBRip
+\bWEB\b
+# TV broadcasts
+HDTV
+\b(PDTV|DVB|SATRip)\b
+# DVD sources

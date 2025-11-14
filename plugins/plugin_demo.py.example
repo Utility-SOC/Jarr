@@ -1,0 +1,70 @@
+"""
+Demo plugin to test the plugin system.
+This will be replaced with real plugins in Phase 2.
+"""
+
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
+from core.plugin_base import PluginBase
+
+
+class DemoPlugin(PluginBase):
+    """
+    A simple demo plugin to verify the plugin system works.
+    """
+    
+    def get_name(self) -> str:
+        return "Demo Plugin"
+    
+    def get_version(self) -> str:
+        return "1.0.0"
+    
+    def get_description(self) -> str:
+        return "A demo plugin to test the modular architecture"
+    
+    def get_widget(self) -> QWidget:
+        """Create and return the main widget."""
+        widget = QWidget()
+        layout = QVBoxLayout(widget)
+        
+        # Title
+        title = QLabel("<h2>🎉 Plugin System Works!</h2>")
+        layout.addWidget(title)
+        
+        # Info
+        info = QLabel(
+            "This is a demo plugin showing that the modular architecture is working.<br><br>"
+            "<b>Phase 1 Complete!</b><br><br>"
+            "The core framework is in place:<br>"
+            "✅ Logging system<br>"
+            "✅ Settings manager<br>"
+            "✅ API client<br>"
+            "✅ Plugin system<br>"
+            "✅ Event bus<br>"
+            "✅ Themes<br><br>"
+            "<b>Next Steps (Phase 2):</b><br>"
+            "• Migrate Jellyfin tab to plugin<br>"
+            "• Migrate Sonarr/Radarr/Lidarr to plugins<br>"
+            "• Add Dashboard plugin"
+        )
+        info.setWordWrap(True)
+        layout.addWidget(info)
+        
+        # Test button
+        test_btn = QPushButton("Test Event Bus")
+        test_btn.clicked.connect(self._test_event_bus)
+        layout.addWidget(test_btn)
+        
+        layout.addStretch()
+        
+        return widget
+    
+    def get_tab_name(self) -> str:
+        return "Demo"
+    
+    def get_icon(self) -> str:
+        return "🎯"
+    
+    def _test_event_bus(self):
+        """Test the event bus by publishing a custom event."""
+        self.logger.info("📢 Demo plugin publishing test event")
+        self.event_bus.publish("custom_event", "demo_test", {"message": "Hello from Demo Plugin!"})
